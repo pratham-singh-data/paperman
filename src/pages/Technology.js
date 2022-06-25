@@ -15,8 +15,16 @@ const Technology = () => {
     }
 
     useEffect(() => {
-        getResults(query, country, "technology").then(item => setArticles(item.articles));
+        getResults(query, country, "technology").then(item => setArticles(item.articles)).catch(() => {
+            setArticles(null)
+        });
     }, [query, country])
+
+    if(! articles){
+        return(
+            <div>No data can be loaded</div>
+        )
+    }
 
     let iter=0;
     return(

@@ -11,11 +11,19 @@ const Business = () => {
     }
 
     useEffect(() => {
-        getResults(query, country, "business").then(item => setArticles(item.articles));
+        getResults(query, country, "business").then(item => setArticles(item.articles)).catch(() => {
+            setArticles(null)
+        });
     }, [query, country])
 
     const selectionMade = (ev) => {
         setCountry(ev.target.value);
+    }
+
+    if(! articles){
+        return(
+            <div>No data can be loaded</div>
+        )
     }
 
     let iter = 0;
