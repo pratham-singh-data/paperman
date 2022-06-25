@@ -4,6 +4,7 @@ import { getResults } from "../misc";
 const Home = () => {
     const [articles, setArticles] = useState([]);
     const [query, setQuery] = useState(null);
+    const [country, setCountry] = useState("us");
 
     const onInputChanged = (ev) => {
         setQuery(ev.target.value);
@@ -17,6 +18,12 @@ const Home = () => {
     return(
         <div>
             <input type="text" onChange={onInputChanged} placeholder="Search Here"/>
+
+            <select>
+                <option>Test</option>
+                <option selected>Test 1</option>
+                <option>Test 2</option>
+            </select>
 
             <div>
                 {articles.map(({source, author, title, description, url, urlToImage, publishedAt}) => {
