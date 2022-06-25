@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getResults } from "../misc";
+import { countries, getResults } from "../misc";
 
 const Home = () => {
     const [articles, setArticles] = useState([]);
@@ -10,19 +10,25 @@ const Home = () => {
         setQuery(ev.target.value);
     }
 
+    const selectionMade = (ev) => {
+        setCountry(ev.target.value);
+    }
+
     useEffect(() => {
-        getResults(query, "us", "general").then(item => setArticles(item.articles));
-    }, [query]);
+        getResults(query, country, "general").then(item => setArticles(item.articles));
+    }, [query, country]);
 
     let iter = 0;
     return(
         <div>
             <input type="text" onChange={onInputChanged} placeholder="Search Here"/>
 
-            <select>
-                <option>Test</option>
-                <option selected>Test 1</option>
-                <option>Test 2</option>
+            <select onChange={selectionMade} defaultValue={"us"}>
+                {countries.map(({value, text, key})=> {
+                    return(
+                        <option key={key} value={value}>{text}</option>
+                    );
+                })}
             </select>
 
             <div>
