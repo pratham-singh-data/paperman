@@ -102,10 +102,10 @@ export const displayResults = (articles) => {
                     <div className="flex space-x-2">
                         <span><img className="w-40 h-30 border rounded" src={urlToImage ? urlToImage : img_not_found} alt={title}/></span>
                         <div>
-                            <p>{description}</p>
+                            <p>{description ? description : "Click to read more"}</p>
                         </div>
                     </div>
-                    <p className="font-semibold">{author}</p>
+                    <p className="font-semibold">{author ? author : "Anonymous"}</p>
                 </div>
             </a>
         )
