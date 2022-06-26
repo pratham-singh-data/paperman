@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const links = [
     {to: "/", text:"Home", key: 1},
@@ -11,19 +12,30 @@ const links = [
 ];
 
 const Navbar = () =>{
+    const [current, setCurrent] = useState(1)
+    const location = useLocation();
+
+    useEffect(() => {
+        links.forEach((item) => {
+            if(item.to === location.pathname){
+                setCurrent(item.key);
+            }
+        })
+    }, [location]);
+
     return(
         <div>
-            <ul>
+            <nav className="w-full text-center">
                 {
                     links.map(item => {
                         return (
-                            <li key={item.key}>
+                            <span className={`mx-2 ${current === item.key ? "text-turquoise" : null}`} key={item.key}>
                                 <a href={item.to}>{item.text}</a>
-                            </li>
+                            </span>
                         )
                     })
                 }
-            </ul>
+            </nav>
         </div>
     )
 }
