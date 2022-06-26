@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { countries, getResults } from "../misc";
+import { countries, displayResults, getResults } from "../misc";
 
 const Health = () => {
     const [articles, setArticles] = useState([]);
@@ -26,7 +26,6 @@ const Health = () => {
         )
     }
 
-    let iter = 0;
     return(
         <div>
             <div className="w-full text-center my-3">
@@ -44,25 +43,7 @@ const Health = () => {
             </div>
         
             <div>
-            {articles.map(({source, author, title, description, url, urlToImage, publishedAt}) => {
-                    return(
-                        <a href={url} key={iter++}>
-                            <div>
-                                <h2>{title}</h2>
-                                <div>
-                                    {source.name}
-                                    {publishedAt}
-                                </div>
-                                <img src={urlToImage} alt={title}/>
-                                <div>
-                                    <p>{author}</p>
-                                    <p>{description}</p>
-                                </div>
-                                <hr/>
-                            </div>
-                        </a>
-                    )
-                })}
+            {displayResults(articles)}
             </div>
         </div>
     );

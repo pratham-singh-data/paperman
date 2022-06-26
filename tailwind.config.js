@@ -6,7 +6,8 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      'turquoise': '#41EAD4'
+      'turquoise': '#41EAD4',
+      'gray': '#E7E9EB'
     }
   },
   plugins: [],

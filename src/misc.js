@@ -62,3 +62,28 @@ export const getResults = (q = null, country = "us", category = "general") => {
 
     return fetch(`https://newsapi.org/v2/top-headlines?pageSize=100&category=${category}&country=${country}&apiKey=31063e17bbda46058dbe7931451554a9`).then(response => response.json())
 }
+
+export const displayResults = (articles) => {
+    let iter = 0;
+
+    return articles.map(({source, author, title, description, url, urlToImage, publishedAt}) => {
+        return(
+            <a key={iter++} href={url}>
+                <div className="my-3 shadow-xl bg-gray p-2 rounded border-2 border-turquoise">
+                    <h2 className="text-lg font-bold">{title}</h2>
+                    <div className="space-x-3 italic">
+                        <span>{source.name}</span>
+                        <span>{publishedAt}</span>
+                    </div>
+                    <div className="flex space-x-2">
+                        <img className="w-40 h-30 border rounded" src={urlToImage} alt={title}/>
+                        <div>
+                            <p>{description}</p>
+                        </div>
+                    </div>
+                    <p className="font-semibold">{author}</p>
+                </div>
+            </a>
+        )
+    })
+}
