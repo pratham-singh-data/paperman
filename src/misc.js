@@ -56,11 +56,13 @@ export const countries = [
 ]
 
 export const getResults = (q = null, country = "us", category = "general") => {
+    const apiKey = process.env.REACT_APP_API_KEY;
+
     if(q){
-        return fetch(`https://newsapi.org/v2/top-headlines?pageSize=100&q=${q}&category=${category}&country=${country}&apiKey=31063e17bbda46058dbe7931451554a9`).then(response => response.json())
+        return fetch(`https://newsapi.org/v2/top-headlines?pageSize=100&q=${q}&category=${category}&country=${country}&apiKey=${apiKey}`).then(response => response.json())
     }
 
-    return fetch(`https://newsapi.org/v2/top-headlines?pageSize=100&category=${category}&country=${country}&apiKey=31063e17bbda46058dbe7931451554a9`).then(response => response.json())
+    return fetch(`https://newsapi.org/v2/top-headlines?pageSize=100&category=${category}&country=${country}&apiKey=${apiKey}`).then(response => response.json())
 }
 
 export const displayResults = (articles) => {
