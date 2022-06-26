@@ -93,7 +93,7 @@ export const displayResults = (articles) => {
     return articles.map(({source, author, title, description, url, urlToImage, publishedAt}) => {
         return(
             <a key={iter++} href={url}>
-                <div className="my-3 shadow-xl bg-gray p-2 rounded border-2 border-turquoise">
+                <div className="mx-2 my-3 space-y-1 shadow-xl bg-gray p-2 rounded border-2 border-turquoise">
                     <h2 className="text-lg font-bold">{title}</h2>
                     <div className="space-x-3 italic">
                         <span>{source.name}</span>
