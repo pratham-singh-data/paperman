@@ -40,21 +40,23 @@ const Health = () => {
             </select>
         
             <div>
-                {articles.map(({source, author, title, description, url, urlToImage, publishedAt}) => {
+            {articles.map(({source, author, title, description, url, urlToImage, publishedAt}) => {
                     return(
-                        <div key={iter++}>
-                            <h2>{title}</h2>
-                            <div>
-                                {source.name}
-                                {publishedAt}
+                        <a href={url}>
+                            <div key={iter++}>
+                                <h2>{title}</h2>
+                                <div>
+                                    {source.name}
+                                    {publishedAt}
+                                </div>
+                                <img src={urlToImage} alt={title}/>
+                                <div>
+                                    <p>{author}</p>
+                                    <p>{description}</p>
+                                </div>
+                                <hr/>
                             </div>
-                            <img src={urlToImage} alt={title}/>
-                            <div>
-                                <p>{author}</p>
-                                <p>{description}</p>
-                            </div>
-                            <hr/>
-                        </div>
+                        </a>
                     )
                 })}
             </div>
