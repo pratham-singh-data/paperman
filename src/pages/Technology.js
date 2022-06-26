@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { countries, displayResults, getResults } from "../misc";
+import { countries, displayResults, getResults, noDataFoundPage } from "../misc";
 
 const Technology = () => {
     const [articles, setArticles] = useState([]);
@@ -22,7 +22,9 @@ const Technology = () => {
 
     if(! articles){
         return(
-            <div>No data can be loaded</div>
+            <div>
+                {noDataFoundPage()}
+            </div>
         )
     }
 

@@ -1,3 +1,7 @@
+import img_not_found from "./assets/no-image-icon-23485.png"
+import error_404 from "./assets/error-404.png"
+import img_sad from "./assets/sad.png"
+
 export const countries = [
     {value: "ae", text: "The United Arab Emirates", key: 1},
     {value: "ar", text: "Argentina", key: 2},
@@ -65,8 +69,26 @@ export const getResults = (q = null, country = "us", category = "general") => {
     return fetch(`https://newsapi.org/v2/top-headlines?pageSize=100&category=${category}&country=${country}&apiKey=${apiKey}`).then(response => response.json())
 }
 
+export const noDataFoundPage = () => {
+    return(
+        <div className="w-full grid justify-items-center my-4">
+            <img className="w-40 h-40" src={error_404} alt="404 Error"/>
+            <p>Data cannot be loaded</p>
+        </div>
+    )
+}
+
 export const displayResults = (articles) => {
     let iter = 0;
+
+    if(articles.length === 0){
+        return(
+            <div className="w-full grid justify-items-center my-4">
+                <img className="w-40 h-40" src={img_sad} alt="No data as specified"/>
+                <p>Cannot find data</p>
+            </div>
+        )
+    }
 
     return articles.map(({source, author, title, description, url, urlToImage, publishedAt}) => {
         return(
@@ -78,7 +100,7 @@ export const displayResults = (articles) => {
                         <span>{publishedAt}</span>
                     </div>
                     <div className="flex space-x-2">
-                        <img className="w-40 h-30 border rounded" src={urlToImage} alt={title}/>
+                        <span><img className="w-40 h-30 border rounded" src={urlToImage ? urlToImage : img_not_found} alt={title}/></span>
                         <div>
                             <p>{description}</p>
                         </div>
